@@ -1,0 +1,13 @@
+
+.Layout_container{
+    min-height: 100vh;
+}
+
+.Layout_nav{
+    width: 100%;
+}
+
+.Layout_logo_container img{
+    object-fit: contain;
+    height: 50px;
+}

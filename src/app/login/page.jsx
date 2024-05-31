@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
 import Image from 'next/image';
-function index({}) {
+import Link from 'next/link';
+function Login() {
     return (
         <div className={styles.login_page_container}>
 
@@ -23,17 +24,16 @@ function index({}) {
 
                     <button className={styles.login_btn} type="submit">Ingresar</button>
                     <div className={styles.login_stay_logged_container}>
-                        <div>
-                            <div className={styles.checkbox_wrapper_1}>
-                                <input id="example-1" className={styles.substituted} type="checkbox" aria-hidden="true" />
-                                <label for="example-1">Checkbox</label>
-                            </div>
-                            
+                        <div className={styles.checkbox_wrapper_1}>
+                            <input id="example-1" className={styles.substituted} type="checkbox" aria-hidden="true" />
+                            <label className={styles.label} for="example-1">Permanecer conectado</label>
                         </div>
+
+                        <Link href={"/"} className={styles.login_recover_password}>Recuperar Contraseña</Link>
                     </div>
                 </form>
         </div>
     );
 }
 
-export default index;
+export default Login;

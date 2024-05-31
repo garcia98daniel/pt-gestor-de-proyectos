@@ -1,0 +1,25 @@
+.NavItemOption_container{
+    text-decoration: none;
+    color: transparent;
+}
+
+.NavItemOption{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 20px;
+    color:gray;
+    border-radius: 6px;
+}
+
+.NavItemOption p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+
+.NavItemOption.active{
+    background: rgb(76, 74, 173);
+    color: white;
+}
