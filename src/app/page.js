@@ -8,8 +8,8 @@ export default function Home() {
   const {name} = useSelector(state => state.user);
   return (
     <main className={styles.main}>
-      <h1>{name}</h1>
-      <input type="text" value={name} onChange={(e) => dispatch(changeUserName(e.target.value))}/>
+      {/* <h1>{name}</h1>
+      <input type="text" value={name} onChange={(e) => dispatch(changeUserName(e.target.value))}/> */}
     </main>
   )
 }
