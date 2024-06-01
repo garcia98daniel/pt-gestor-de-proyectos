@@ -11,3 +11,11 @@
     object-fit: contain;
     height: 50px;
 }
+
+.Layout_menu_currentpage_container{
+    display: flex;
+}
+
+.Layout_currentpage_container{
+    padding: 0 30px;
+}

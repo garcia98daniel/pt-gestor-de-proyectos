@@ -17,7 +17,7 @@ function Nav() {
                         />
                     </i>
 
-                    <BsList />
+                    <BsList size={"20px"}/>
                 </div>
 
                 <div className={styles.Layout_nav_right_side}>

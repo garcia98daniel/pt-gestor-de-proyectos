@@ -8,8 +8,12 @@ function Layout({children}) {
     return (
         <div className={styles.Layout_container}>
             <Nav/>
-            
-            <SideMenu/>
+            <div className={styles.Layout_menu_currentpage_container}>
+                <SideMenu/>
+                <div className={styles.Layout_currentpage_container}>
+                    {children}
+                </div>
+            </div>
         </div>
     );
 }

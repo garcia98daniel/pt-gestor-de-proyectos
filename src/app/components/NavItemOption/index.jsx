@@ -7,8 +7,10 @@ function NavItemOption({icon, optionName, redirect}) {
     return (
         <Link href={redirect} className={styles.NavItemOption_container}>
             <div className={`${styles.NavItemOption} ${navOptionSelected === optionName && styles.active}`}>
-                {icon}
-                <p>{optionName}</p>
+                <div style={{display:"flex"}}>
+                    {icon}
+                    <p>{optionName}</p>
+                </div>
                 <BsChevronRight />
             </div>
         </Link>
