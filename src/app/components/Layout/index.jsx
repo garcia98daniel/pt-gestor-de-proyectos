@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 
 import Nav from '../Nav';
 import SideMenu from '../SideMenu';
+import TaskList from '../TaskList';
 
 function Layout({children}) {
     return (
@@ -11,6 +12,7 @@ function Layout({children}) {
             <div className={styles.Layout_menu_currentpage_container}>
                 <SideMenu/>
                 <div className={styles.Layout_currentpage_container}>
+                    <TaskList/>
                     {children}
                 </div>
             </div>

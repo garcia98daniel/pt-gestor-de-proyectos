@@ -6,6 +6,8 @@ import StatsItem from "../components/StatsItem";
 import Image from "next/image";
 import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
+import PercentageChartProgress from "../components/PercentageChartProgress";
+import PieChart from "../components/PieChart";
 
 
 
@@ -83,6 +85,18 @@ function Dashboard() {
           <BarChart/>
         </div>
 
+      </section>
+
+      <section className={styles.deliveries_chart_container}>
+        <div className={styles.delivery_stats_chart_container}>
+            <p style={{ margin:"0px"}}>Entregas</p>
+            <h1 style={{ margin:"0px", color: "#4746A3" }}>%30</h1>
+            <p style={{ marginBotton: "10px", marginTop:"0px", color: "#4746A3" }}>Proximo Ciclo: Jun-27 2020</p>
+            <small>El ciclo de entrega se calcula usando las fechas estimadas de los Sprints en cada proyecto</small>
+        </div>
+
+        <PercentageChartProgress/>
+        <PieChart/>
       </section>
     </Layout>
   );

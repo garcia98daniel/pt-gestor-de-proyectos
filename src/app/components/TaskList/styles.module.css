@@ -1,0 +1,42 @@
+.TaskList{
+    position: fixed;
+    top: 55px;
+    right: 0;
+    min-width: 350px;
+    background: white;
+    min-height: calc(100vh - 55px);
+    border: 1px solid lightgray;
+    z-index: 5;
+}
+
+.TaskList_header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    padding: 12px;
+}
+
+.TaskList_pending{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.TaskList_pending p{
+    color: lightgray;   
+}
+
+.TaskList_pending button{
+    border: none;
+    background: #4746A3;
+    color: white;
+    border-radius: 6px;
+    padding: 10px 20px;
+}
+
+.TaskList_container{
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

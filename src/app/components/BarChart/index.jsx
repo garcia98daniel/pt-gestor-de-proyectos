@@ -53,7 +53,7 @@ function BarChart(props) {
     };
 
     return (
-        <div style={{ width: '100%', height: '366px', marginTop:"110px" }}>
+        <div style={{ width: '100%', height: '256px', marginTop:"110px" }}>
             <Bar data={data} options={options} />
         </div>
     );

@@ -14,7 +14,7 @@
 }
 
 .weather_container{
-    min-width: 50%;
+    min-width: 45%;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
@@ -39,9 +39,19 @@
 }
 
 .server_chart_container{
-    width: 50%;
+    width: 45%;
 }
 
 .commits_chart_container{
     width: 50%;
+}
+
+.delivery_stats_chart_container{
+    width: 20%;
+}
+
+.deliveries_chart_container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
 }

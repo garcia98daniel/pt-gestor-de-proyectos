@@ -1,0 +1,19 @@
+import React from 'react';
+import styles from "./styles.module.css";
+import { BsXLg } from "react-icons/bs";
+
+function TaskPendingItem({taskName}) {
+    return (
+        <div className={styles.TaskPendingItem}>
+            <div className={styles.checkbox_wrapper_1}>
+                <input id="example-1" className={styles.substituted} type="checkbox" aria-hidden="true" />
+                <label className={styles.label} for="example-1">Permanecer conectado</label>
+            </div>
+            <p>{taskName}</p>
+            <BsXLg />
+
+        </div>
+    );
+}
+
+export default TaskPendingItem;
