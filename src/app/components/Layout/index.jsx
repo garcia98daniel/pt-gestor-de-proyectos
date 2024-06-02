@@ -12,7 +12,6 @@ function Layout({children}) {
             <div className={styles.Layout_menu_currentpage_container}>
                 <SideMenu/>
                 <div className={styles.Layout_currentpage_container}>
-                    <TaskList/>
                     {children}
                 </div>
             </div>

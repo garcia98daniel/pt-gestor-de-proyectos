@@ -8,6 +8,7 @@
     padding: 0 20px;
     box-sizing: border-box;
     box-shadow: 0 10px 6px -1px rgba(57, 57, 57, 0.1);
+    position: relative;
 }
 
 .Layout_nav_left_side{

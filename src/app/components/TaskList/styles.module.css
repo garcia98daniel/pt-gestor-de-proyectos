@@ -12,8 +12,9 @@
 .TaskList_header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid lightgray;
-    padding: 12px;
+    padding: 0 12px;
 }
 
 .TaskList_pending{
@@ -23,7 +24,7 @@
 }
 
 .TaskList_pending p{
-    color: lightgray;   
+    color: rgb(110, 110, 110);   
 }
 
 .TaskList_pending button{
