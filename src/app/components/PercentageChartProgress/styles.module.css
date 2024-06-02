@@ -1,0 +1,12 @@
+.PercentageChartProgress_container{
+    width: 33%;
+    border-right: 1px solid lightgray;
+    padding-right: 30px;
+}
+
+.progressBar_container{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    gap: 30px;
+}
