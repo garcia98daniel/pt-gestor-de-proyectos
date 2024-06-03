@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from "./styles.module.css";
 import { BsXLg } from "react-icons/bs";
 import TaskPendingItem from '../TaskPendingItem';

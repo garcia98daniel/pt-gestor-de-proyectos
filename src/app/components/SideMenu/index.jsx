@@ -16,7 +16,7 @@ function SideMenu() {
                 <NavItemOption
                 icon={<BsLayoutTextWindowReverse />}
                 optionName={"Proyectos"}
-                redirect={"/porjects"}
+                redirect={"/projects"}
                 />
                 <NavItemOption
                 icon={<BsPersonPlus />}

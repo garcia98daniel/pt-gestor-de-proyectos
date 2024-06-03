@@ -1,0 +1,21 @@
+.Projects_page_container{
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+.btn_wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.projects_add_new_project_btn{
+    border: none;
+    background: #4746A3;
+    color: white;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
