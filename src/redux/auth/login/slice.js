@@ -8,7 +8,7 @@ export const loginSlice = createSlice({
         success: false,
         error: '',
         values: {
-            email: '',
+            user: '',
             password: '',
         },
     },
@@ -27,6 +27,7 @@ export const loginSlice = createSlice({
             state.error = action.payload;
         },
         loginChangeForm: (state, action) => {
+            console.log(action.payload)
             state.values[action.payload.key] = action.payload.value;
         },
         loginResetStates: (state) => {
@@ -34,7 +35,7 @@ export const loginSlice = createSlice({
             state.success = false;
             state.error = '';
             state.values = {
-                email: '',
+                user: '',
                 password: '',
             };
         }

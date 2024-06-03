@@ -1,60 +1,68 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-    requesting: false,
-    success: false,
-    error: '',
-    values: {
-        email: '',
-        password: '',
-    },
-    modal_open: false,
-};
-
-const loginSlice = createSlice({
-    name: 'login',
-    initialState,
-    reducers: {
-        loginRequesting: (state) => {
-            state.requesting = true;
-            state.success = false;
-            state.error = '';
-        },
-        loginSuccess: (state) => {
-            state.requesting = false;
-            state.success = true;
-        },
-        loginError: (state, action) => {
-            state.requesting = false;
-            state.error = action.payload;
-        },
-        loginShowHiddenModal: (state, action) => {
-            state.modal_open = action.payload;
-        },
-        loginChangeForm: (state, action) => {
-            state.values[action.payload.key] = action.payload.value;
-        },
-        loginResetStates: (state) => {
-            state.requesting = false;
-            state.success = false;
-            state.error = '';
-            state.values = {
-                email: '',
-                password: '',
-            };
-        }
-    }
-});
-
-// Exportamos las acciones
-export const {
+import {call, all, put, takeEvery} from 'redux-saga/effects';
+import {ROUTE_ENDPOINT} from "../../../utils/route";
+import { 
     loginRequesting,
     loginSuccess,
     loginError,
-    loginShowHiddenModal,
-    loginChangeForm,
-    loginResetStates
-} = loginSlice.actions;
+    loginResetStates,
+ } from "./slice";
+// import {clientSet, clientUnset} from "../../client/actions";
+import {userGetSuccess} from "../user/slice";
 
-// Exportamos el reducer
-export default loginSlice.reducer;
+const loginUrl = `${ROUTE_ENDPOINT}/login`;
+
+const loginApi = async (values) => {
+    const {user, password} = values;
+    return fetch(`${loginUrl}?user=${user}&password=${password}`, {
+        method: 'Get',
+        headers: {
+            'Accept': 'application/json',
+        },
+    })
+        .then(response => {
+            if (response.status === 500)
+                throw "Error interno del servidor";
+            
+            // console.log(response.status)
+            return response.json()
+        })
+        .then(json => {
+          console.log(json)
+          console.log(json.length)
+        if(json.length == 1){
+            if(json[0]?.user === user && json[0]?.password === password){
+                return json;
+            }
+        }
+        
+        throw "Usuario o contraseña invalida";
+ 
+        }).catch((error) => {
+            throw error;
+        })
+};
+
+function* loginFlow(action) {
+    try {
+        
+        const values = action.payload;
+        console.log(values);
+        const user = yield call(loginApi, values);
+        yield put(loginSuccess());
+        yield put(userGetSuccess(user[0]));
+        // yield put(clientSet(user.token));
+        yield put(loginResetStates());
+
+    } catch (error) {
+        yield put(loginError(error));
+    }
+}
+
+
+function* loginWatcher() {
+    yield all([
+        takeEvery(loginRequesting.type, loginFlow),
+    ])
+}
+
+export default loginWatcher;

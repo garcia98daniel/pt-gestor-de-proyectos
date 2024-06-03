@@ -10,6 +10,7 @@ import PercentageChartProgress from "../../components/PercentageChartProgress";
 import PieChart from "../../components/PieChart";
 import Weather from "../../hooks/weather";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const TEMP_KELVIN = 273.15
 
@@ -26,9 +27,11 @@ function Dashboard() {
     setCelcius(tempCelcius)
   };
 
+  const {user:{user}} = useSelector(state => state.user);
+
   return (
     <Layout>
-      <p className={styles.welcome_txt}>Bienvenido USERNAME</p>
+      <p className={styles.welcome_txt}>Bienvenido {user}</p>
       <small>
         Verifica tus alertas, posees <span>3 alertas sin leer!</span>
       </small>
