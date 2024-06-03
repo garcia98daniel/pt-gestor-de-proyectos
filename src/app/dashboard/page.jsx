@@ -8,10 +8,13 @@ import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
 import PercentageChartProgress from "../components/PercentageChartProgress";
 import PieChart from "../components/PieChart";
-
+import Weather from "../components/Weather";
 
 
 function Dashboard() {
+
+  
+
   return (
     <Layout>
       <p className={styles.welcome_txt}>Bienvenido USERNAME</p>
@@ -23,6 +26,8 @@ function Dashboard() {
           <i className={styles.weather_img_container}>
             <Image src="/imgs/nublado.jpg" alt="logo" fill />
           </i>
+
+          <Weather />
 
           <div className={styles.weather_detail}>27C Cali</div>
         </div>

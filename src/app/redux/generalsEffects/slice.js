@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const Slice = createSlice({
-    name:"user",
+export const generalsSlice = createSlice({
+    name:"general",
     initialState:{
-        name:"DANIEL",    
+        sideMenuOptionSelected:"dashboard",    
     },
     reducers:{
-        changeUserName:(state, action) =>{
-            state.name=action.payload;
+        changeSideMenuOptionSelected:(state, action) =>{
+            state.sideMenuOptionSelected = action.payload;
         }
     }
 })
 
-export const {changeUserName} = Slice.actions;
+export const {
+    changeSideMenuOptionSelected
+} = generalsSlice.actions;

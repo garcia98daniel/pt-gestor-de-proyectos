@@ -11,7 +11,7 @@ function SideMenu() {
                 <NavItemOption
                 icon={<BsLayoutWtf />}
                 optionName={"Dashboard"}
-                redirect={"/dasboard"}
+                redirect={"/dashboard"}
                 />
                 <NavItemOption
                 icon={<BsLayoutTextWindowReverse />}

@@ -1,8 +1,12 @@
+"use client";
 import React from 'react';
 import styles from './styles.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 function Login() {
+     const dispatch = useDispatch();
+  // const {name} = useSelector(state => state.user);
     return (
         <div className={styles.login_page_container}>
 
