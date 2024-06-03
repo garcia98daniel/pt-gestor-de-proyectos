@@ -1,0 +1,29 @@
+
+.notifications_container{
+    position: fixed;
+    top: 55px;
+    right: 100px;
+    min-width: 250px;
+    background: white;
+    height: 200px;
+    overflow: auto;
+    z-index: 5;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.notifications_title{
+    border-bottom: 1px solid rgb(210, 210, 210);
+    padding-bottom:10px !important;
+}
+
+.notifications_container p{
+    padding: 0px 10px;
+}
+
+.notifications_container small{
+    padding: 0px 10px;
+}
+
+.notifications_items_container{
+}
