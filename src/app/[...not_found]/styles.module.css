@@ -1,0 +1,50 @@
+/* pages/404.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background: #4C4AAD;
+  }
+  
+.main_container{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.main_container h1{
+  color: white;
+  font-size: 8em;
+  font-weight: 200;
+}
+.main_container h3{
+  color: white;
+  text-align: left;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.main_container p{
+  width: 300px;
+  text-align: left;
+  color: white;
+  margin: 0;
+
+}
+
+.container a{
+  color:white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.container small{
+  margin-top: 40px;
+  color:white;
+  font-size: 12px;
+}
