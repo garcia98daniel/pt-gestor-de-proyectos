@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./styles.module.css";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -11,7 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { BsPencilSquare } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
-import CreateNewProjectForm from "../components/modals/CreateNewProjectForm";
+import CreateNewProjectForm from "../../components/modals/CreateNewProjectForm";
 function createData(
   proyecto,
   cliente,

@@ -1,7 +1,7 @@
 'use client';
 import styles from './page.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { changeUserName } from "./redux/generalsEffects/slice";
+import { changeUserName } from "../redux/generalsEffects/slice";
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 

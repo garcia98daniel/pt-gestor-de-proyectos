@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import styles from "./styles.module.css";
-import StatsItem from "../components/StatsItem";
+import StatsItem from "../../components/StatsItem";
 import Image from "next/image";
-import LineChart from "../components/LineChart";
-import BarChart from "../components/BarChart";
-import PercentageChartProgress from "../components/PercentageChartProgress";
-import PieChart from "../components/PieChart";
-import Weather from "../components/Weather";
+import LineChart from "../../components/LineChart";
+import BarChart from "../../components/BarChart";
+import PercentageChartProgress from "../../components/PercentageChartProgress";
+import PieChart from "../../components/PieChart";
+import Weather from "../../components/Weather";
 
 
 function Dashboard() {
