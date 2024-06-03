@@ -36,7 +36,9 @@ function Nav() {
                         height={30}
                         />
                     </i>
-                    <BsThreeDots onClick={() => setTaskList_isOpen(prev => !prev)}/>
+                    <BsThreeDots 
+                     className={styles.Layout_task_icon}
+                     onClick={() => setTaskList_isOpen(prev => !prev)}/>
                 </div>
         </nav>
     );

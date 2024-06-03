@@ -1,9 +1,9 @@
 .container {
     min-width: 400px;
     width: 33%;
-    height: 366px;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 .chartWrapper {
