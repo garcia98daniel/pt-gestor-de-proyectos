@@ -1,21 +1,20 @@
 // components/Weather.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const Weather = () => {
-  const [city, setCity] = useState('');
-  const [weatherData, setWeatherData] = useState(null);
+const Weather = ({ onWeatherReponse }) => {
+  const [city, setCity] = useState("");
   const [locationError, setLocationError] = useState(null);
 
-  const apiKey = '34e9e9b7c5e82634ead2e68a2a4c3eaf';
+  const apiKey = "34e9e9b7c5e82634ead2e68a2a4c3eaf";
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, (error) => {
-        setLocationError('Unable to retrieve your location');
+        setLocationError("Unable to retrieve your location");
       });
     } else {
-      setLocationError('Geolocation is not supported by this browser');
+      setLocationError("Geolocation is not supported by this browser");
     }
   }, []);
 
@@ -31,7 +30,7 @@ const Weather = () => {
         updateWeather(data.name);
       })
       .catch((error) => {
-        console.error('There was a problem fetching the weather data:', error);
+        console.error("There was a problem fetching the weather data:", error);
       });
   };
 
@@ -40,27 +39,27 @@ const Weather = () => {
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
       .then((data) => {
-        setWeatherData(data);
+        onWeatherReponse(data);
       })
       .catch((error) => {
-        console.error('There was a problem fetching the weather data:', error);
+        console.error("There was a problem fetching the weather data:", error);
       });
   };
 
   const handleSearch = () => {
-    if (city.trim() === '') {
-      alert('Please enter a city name.');
+    if (city.trim() === "") {
+      alert("Please enter a city name.");
       return;
     }
     updateWeather(city);
   };
 
-  return null
+  return null;
 };
 
 export default Weather;

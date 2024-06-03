@@ -8,12 +8,23 @@ import LineChart from "../../components/LineChart";
 import BarChart from "../../components/BarChart";
 import PercentageChartProgress from "../../components/PercentageChartProgress";
 import PieChart from "../../components/PieChart";
-import Weather from "../../components/Weather";
+import Weather from "../../hooks/weather";
+import { useState } from "react";
 
+const TEMP_KELVIN = 273.15
 
 function Dashboard() {
 
-  
+  const [city,setCity] = useState('')
+  const [weather,setWeather] = useState('')
+  const [celcius, setCelcius] = useState('')
+
+  const onWeatherReponse = (dataWeather) => {
+    setCity(dataWeather.name)
+    setWeather(dataWeather.weather[0].main)
+    const tempCelcius = Math.round(dataWeather.main.temp - TEMP_KELVIN);
+    setCelcius(tempCelcius)
+  };
 
   return (
     <Layout>
@@ -24,12 +35,21 @@ function Dashboard() {
       <section className={styles.weather_and_stats}>
         <div className={styles.weather_container}>
           <i className={styles.weather_img_container}>
-            <Image src="/imgs/nublado.jpg" alt="logo" fill />
+          {weather === "Clear" && <Image src="/imgs/despejado.jpg" alt="despejado" fill />}
+          {weather === "Clouds" && <Image src="/imgs/nublado.jpg" alt="nublado" fill />}
+          {weather === "Rain" && <Image src="/imgs/lluvioso.jpg" alt="lluvia" fill />}
+          {weather === "Drizzle" && <Image src="/imgs/lluvioso.jpg" alt="llovizna" fill />}
+          {weather === "Thunderstorm" && <Image src="/imgs/tormenta.jpg" alt="tormenta" fill />}
+          {weather === "Snow" && <Image src="/imgs/nieve.jpg" alt="nieve" fill />}
+          {weather === "Mist" && <Image src="/imgs/niebla.jpg" alt="niebla" fill />}
+          {weather === "Smoke" && <Image src="/imgs/humo.jpg" alt="humo" fill />}
+          {weather === "Haze" && <Image src="/imgs/neblina.jpg" alt="neblina" fill />}
+          {weather === '' && <p>Cargando... </p>}
           </i>
 
-          <Weather />
+          <Weather onWeatherReponse={onWeatherReponse} />
 
-          <div className={styles.weather_detail}>27C Cali</div>
+          <div className={styles.weather_detail}>{celcius}C {city} {weather} </div>
         </div>
 
         <div className={styles.stats_container}>
@@ -78,7 +98,7 @@ function Dashboard() {
               <h1 style={{ margin: "10px 0", color: "#4746A3" }}>10</h1>
             </div>
           </div>
-          <LineChart/>
+          <LineChart />
         </div>
 
         <div className={styles.commits_chart_container}>
@@ -87,21 +107,27 @@ function Dashboard() {
             Total de commits realizados por cada mes diferenciando los tag de
             Ajusted(fix) y Caracteristicas(feat)
           </small>
-          <BarChart/>
+          <BarChart />
         </div>
-
       </section>
 
       <section className={styles.deliveries_chart_container}>
         <div className={styles.delivery_stats_chart_container}>
-            <p style={{ margin:"0px"}}>Entregas</p>
-            <h1 style={{ margin:"0px", color: "#4746A3" }}>%30</h1>
-            <p style={{ marginBotton: "10px", marginTop:"0px", color: "#4746A3" }}>Proximo Ciclo: Jun-27 2020</p>
-            <small>El ciclo de entrega se calcula usando las fechas estimadas de los Sprints en cada proyecto</small>
+          <p style={{ margin: "0px" }}>Entregas</p>
+          <h1 style={{ margin: "0px", color: "#4746A3" }}>%30</h1>
+          <p
+            style={{ marginBotton: "10px", marginTop: "0px", color: "#4746A3" }}
+          >
+            Proximo Ciclo: Jun-27 2020
+          </p>
+          <small>
+            El ciclo de entrega se calcula usando las fechas estimadas de los
+            Sprints en cada proyecto
+          </small>
         </div>
 
-        <PercentageChartProgress/>
-        <PieChart/>
+        <PercentageChartProgress />
+        <PieChart />
       </section>
     </Layout>
   );
