@@ -4,6 +4,11 @@ import createSagaMiddleware from "redux-saga";
 import { generalsSlice } from "./generalsEffects/slice";
 import { userSlice } from "./auth/user/slice";
 import { loginSlice } from "./auth/login/slice";
+import { notificationsSlice } from "./notifications/slice";
+import { todosSlice } from "./todos/slice";
+import { dashboardCardsSlice } from "./dashboardCards/slice";
+import { projectsSlice } from "./projects/slice";
+import { usersSlice } from "./users/slice";
 import IndexSagas from "./index-sagas";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -14,6 +19,11 @@ const store = configureStore({
         generals:generalsSlice.reducer,
         user:userSlice.reducer,
         login:loginSlice.reducer,
+        notifications:notificationsSlice.reducer,
+        todos:todosSlice.reducer,
+        dashboardCards:dashboardCardsSlice.reducer,
+        projects:projectsSlice.reducer,
+        users:usersSlice.reducer,
     }),
 
 
