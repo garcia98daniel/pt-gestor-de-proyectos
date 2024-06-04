@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from "./styles.module.css";
-
-function NotificationItem({icon, notification_type, time}) {
+import { BsExclamationCircleFill } from "react-icons/bs";
+import { BsFillNutFill } from "react-icons/bs";
+import { BsFillInfoCircleFill } from "react-icons/bs";
+function NotificationItem({type, notification_type, time}) {
     return (
         <div className={styles.NotificationItem}>
-            {icon}
+            {type === "error" && <BsExclamationCircleFill/>}
+            {type === "warning" && <BsFillNutFill/>}
+            {type === "info" && <BsFillInfoCircleFill/>}
             <div>
                 <p>{notification_type}</p>
                 <small>{time}</small>

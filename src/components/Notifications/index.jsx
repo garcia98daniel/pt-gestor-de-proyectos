@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import styles from "./styles.module.css";
 import NotificationItem from '../NotificationItem';
 import { BsXLg } from "react-icons/bs";
+import { useSelector } from 'react-redux';
 
 function Notifications({ notifications_isOpen, setNotifications_isOpen }) {
   const containerRef = useRef(null);
-
+  const {notifications} = useSelector(state => state.notifications);
   const handleClickOutside = (event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
       setNotifications_isOpen(false);
@@ -32,12 +33,12 @@ function Notifications({ notifications_isOpen, setNotifications_isOpen }) {
     <div ref={containerRef} className={styles.notifications_container}>
       <p className={styles.notifications_title}>Notificaciones</p>
       <div className={styles.notifications_items_container}>
-        {[1, 2, 3, 4, 5].map((_, index) => (
+        {notifications?.map((notification, index) => (
           <NotificationItem
             key={index}
-            icon={<BsXLg />}
-            notification_type={"Error Despliegue"}
-            time={"Hace 6 días"}
+            type={notification.type}
+            notification_type={notification.details}
+            time={notification.time}
           />
         ))}
       </div>

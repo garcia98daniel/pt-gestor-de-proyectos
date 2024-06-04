@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import Image from 'next/image';
 import { BsList } from "react-icons/bs";
@@ -9,11 +9,19 @@ import { BsPower } from "react-icons/bs";
 import TaskList from '../TaskList';
 import Notifications from '../Notifications';
 import Logout from '../Logout';
+import { todosGetRequesting } from '@/redux/todos/slice';
+import { notificationsGetRequesting } from '@/redux/notifications/slice';
+import { useDispatch } from 'react-redux';
 
 function Nav() {
+    const dispatch = useDispatch();
     const [taskList_isOpen, setTaskList_isOpen] = useState(false);
     const [notifications_isOpen, setNotifications_isOpen] = useState(false);
     const [logout_isOpen, setLogout_isOpen] = useState(false);
+    useEffect(()=>{
+        dispatch(notificationsGetRequesting());
+        dispatch(todosGetRequesting());
+      },[]);
     return (
         <nav className={styles.Layout_nav}>
                 <TaskList
