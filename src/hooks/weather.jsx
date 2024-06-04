@@ -1,12 +1,13 @@
 // components/Weather.js
 
 import React, { useState, useEffect } from "react";
+import {WEATHER_API} from "../utils/route";
 
 const Weather = ({ onWeatherReponse }) => {
   const [city, setCity] = useState("");
   const [locationError, setLocationError] = useState(null);
 
-  const apiKey = "34e9e9b7c5e82634ead2e68a2a4c3eaf";
+  const apiKey = WEATHER_API;
 
   useEffect(() => {
     if (navigator.geolocation) {

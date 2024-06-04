@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import styles from "./styles.module.css";
 import StatsItem from "../../components/StatsItem";
@@ -10,12 +10,14 @@ import PercentageChartProgress from "../../components/PercentageChartProgress";
 import PieChart from "../../components/PieChart";
 import Weather from "../../hooks/weather";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { todosGetRequesting } from "@/redux/todos/slice";
+import { dashboardCardsGetRequesting } from "@/redux/dashboardCards/slice";
 
 const TEMP_KELVIN = 273.15
 
 function Dashboard() {
-
+  const dispatch = useDispatch();
   const [city,setCity] = useState('')
   const [weather,setWeather] = useState('')
   const [celcius, setCelcius] = useState('')
@@ -28,6 +30,11 @@ function Dashboard() {
   };
 
   const {user:{user}} = useSelector(state => state.user);
+  const {dashboardCards} = useSelector(state => state.dashboardCards);
+
+  useEffect(()=>{
+    dispatch(dashboardCardsGetRequesting());
+  },[]);
 
   return (
     <Layout>
@@ -58,26 +65,26 @@ function Dashboard() {
         <div className={styles.stats_container}>
           <StatsItem
             title={"Proyectos Registrados"}
-            quantity={"50"}
+            quantity={dashboardCards?.projects}
             details={"Ultimo proyecto registrado hace 15 días"}
             bgcolor={"#7FA1FB"}
           />
           <StatsItem
             title={"Proyectos en Desarrollo"}
-            quantity={"12"}
+            quantity={dashboardCards?.projects_dev}
             details={"total de avance 22.00%"}
             bgcolor={"#4746A3"}
           />
           <StatsItem
-            title={"Proyectos Registrados"}
-            quantity={"50"}
-            details={"Ultimo proyecto registrado hace 15 días"}
+            title={"NC's sin resolver"}
+            quantity={dashboardCards?.peding_nc}
+            details={"Ultima NC registrada hace 1 día"}
             bgcolor={"#7878E8"}
           />
           <StatsItem
-            title={"Proyectos Registrados"}
-            quantity={"50"}
-            details={"Ultimo proyecto registrado hace 15 días"}
+            title={"Cantidad de Errores"}
+            quantity={dashboardCards?.errors_deploy}
+            details={"Ultimo error hace 2 horas"}
             bgcolor={"#F3777F"}
           />
         </div>
