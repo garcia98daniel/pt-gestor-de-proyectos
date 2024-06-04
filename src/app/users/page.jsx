@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Layout from "../../components/Layout";
 import Table from "@mui/material/Table";
@@ -13,47 +13,17 @@ import { BsPencilSquare } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import CreateNewUserForm from "../../components/modals/CreateNewUserForm";
 import Image from "next/image";
-
-function createData(
-  nombre,
-  apellido,
-  rol,
-  tecnologias,
-  area,
-  proyectos
-) {
-  return {
-    nombre,
-    apellido,
-    rol,
-    tecnologias,
-    area,
-    proyectos
-  };
-}
-
-const rows = [
-  createData(
-    "Juan",
-    "Perez",
-    "Developer",
-    "React, Node.js",
-    "Desarrollo",
-    "Proyecto A, Proyecto B"
-  ),
-  createData(
-    "Ana",
-    "Gomez",
-    "Manager",
-    "Angular, Java",
-    "Gestión",
-    "Proyecto C, Proyecto D"
-  ),
-  // Añade más filas según sea necesario
-];
+import { useDispatch, useSelector } from "react-redux";
+import { usersGetRequesting } from "@/redux/users/slice";
 
 function Users() {
   const [createNewUser_isOpen, setCreateNewUser_isOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { users, requesting } = useSelector(state => state.users);
+
+  useEffect(() => {
+    dispatch(usersGetRequesting());
+  }, []);
 
   return (
     <Layout>
@@ -68,9 +38,7 @@ function Users() {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>
-                    
-                </TableCell>
+                <TableCell>Foto</TableCell>
                 <TableCell>Nombre</TableCell>
                 <TableCell>Apellido</TableCell>
                 <TableCell>Rol</TableCell>
@@ -81,28 +49,31 @@ function Users() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+            {requesting && "cargando..."}
+
+              {users?.map((user) => (
                 <TableRow
-                  key={row.nombre}
+                  key={user.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
                     <i>
-                        <Image src="/imgs/userprofile.png" 
+                      <Image
+                        src={user.url_photo || "/imgs/userprofile.png"}
                         alt="logo"
                         width={30}
                         height={30}
-                        />
+                      />
                     </i>
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {row.nombre}
+                    {user.name}
                   </TableCell>
-                  <TableCell>{row.apellido}</TableCell>
-                  <TableCell>{row.rol}</TableCell>
-                  <TableCell>{row.tecnologias}</TableCell>
-                  <TableCell>{row.area}</TableCell>
-                  <TableCell>{row.proyectos}</TableCell>
+                  <TableCell>{user.last_name}</TableCell>
+                  <TableCell>{user.rol === 1 ? "Developer" : "Otro"}</TableCell>
+                  <TableCell>{user.list}</TableCell>
+                  <TableCell>{user.area}</TableCell>
+                  <TableCell>Proyectos</TableCell> {/* Placeholder para proyectos */}
                   <TableCell style={{ display: 'flex', alignItems: "center", height: "50px" }}>
                     <BsPencilSquare /><BsFillTrashFill />
                   </TableCell>

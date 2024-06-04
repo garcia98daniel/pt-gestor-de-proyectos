@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -8,15 +9,41 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Autocomplete from '@mui/material/Autocomplete';
+import { createUserRequesting } from '@/redux/users/slice';
 
 export default function CreateNewUserForm({ open, setOpen }) {
+  const dispatch = useDispatch();
   const rolesOptions = ['Developer', 'Manager', 'Tester'];
   const technologiesOptions = ['React', 'Node.js', 'Angular', 'Java'];
   const areasOptions = ['Desarrollo', 'Gestión', 'QA'];
   const projectsOptions = ['Proyecto A', 'Proyecto B', 'Proyecto C', 'Proyecto D'];
 
+  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
+  const [selectedProjects, setSelectedProjects] = useState([]);
+  const [selectedRole, setSelectedRole] = useState('');
+
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const formJson = Object.fromEntries(formData.entries());
+
+    // Transform data to match the required structure
+    const transformedData = {
+      id: formJson.id,
+      name: formJson.nombre,
+      last_name: formJson.apellido,
+      url_photo: '', // Assuming this is not part of the form
+      rol: rolesOptions.indexOf(selectedRole) + 1, // Convert role to integer
+      list: selectedTechnologies.join('|'), // Join technologies with '|'
+      area: formJson.area,
+    };
+
+    dispatch(createUserRequesting(transformedData));
+    handleClose();
   };
 
   return (
@@ -25,13 +52,7 @@ export default function CreateNewUserForm({ open, setOpen }) {
       onClose={handleClose}
       PaperProps={{
         component: 'form',
-        onSubmit: (event) => {
-          event.preventDefault();
-          const formData = new FormData(event.currentTarget);
-          const formJson = Object.fromEntries(formData.entries());
-          console.log(formJson);
-          handleClose();
-        },
+        onSubmit: handleSubmit,
       }}
     >
       <DialogTitle style={{ borderBottom: '1px solid lightgray' }}>Crear Nuevo Usuario</DialogTitle>
@@ -60,6 +81,7 @@ export default function CreateNewUserForm({ open, setOpen }) {
           <FormLabel htmlFor="rol">Rol</FormLabel>
           <Autocomplete
             options={rolesOptions}
+            onChange={(event, newValue) => setSelectedRole(newValue)}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -79,10 +101,12 @@ export default function CreateNewUserForm({ open, setOpen }) {
             options={technologiesOptions}
             getOptionLabel={(option) => option}
             filterSelectedOptions
+            value={selectedTechnologies}
+            onChange={(event, newValue) => setSelectedTechnologies(newValue)}
             renderInput={(params) => (
               <TextField
                 {...params}
-                required
+                
                 label="Seleccione tecnologías"
                 placeholder="Tecnologías"
                 id="tecnologias"
@@ -99,7 +123,7 @@ export default function CreateNewUserForm({ open, setOpen }) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                required
+                
                 label="Seleccione el área"
                 id="area"
                 name="area"
@@ -115,10 +139,12 @@ export default function CreateNewUserForm({ open, setOpen }) {
             options={projectsOptions}
             getOptionLabel={(option) => option}
             filterSelectedOptions
+            value={selectedProjects}
+            onChange={(event, newValue) => setSelectedProjects(newValue)}
             renderInput={(params) => (
               <TextField
                 {...params}
-                required
+                
                 label="Seleccione proyectos"
                 placeholder="Proyectos"
                 id="proyectos"
