@@ -2,7 +2,12 @@ import React from 'react';
 import styles from "./styles.module.css";
 import { BsXLg } from "react-icons/bs";
 import TaskPendingItem from '../TaskPendingItem';
+import { useSelector } from 'react-redux';
 function TaskList({taskList_isOpen, setTaskList_isOpen}) {
+
+    const {todos} = useSelector(state => state.todos);
+    // console.log(todos);
+
     if(!taskList_isOpen){
         return null;
     }
@@ -20,8 +25,8 @@ function TaskList({taskList_isOpen, setTaskList_isOpen}) {
             </div>
 
             <div className={styles.TaskList_container}>
-                {["task1", "task2", "task3"].map((item) => {
-                    return (<TaskPendingItem taskName={item}/>)
+                {todos?.map((todo) => {
+                    return (<TaskPendingItem taskName={todo.description} checked={todo.check}/>)
                 })}
             </div>
         </div>
