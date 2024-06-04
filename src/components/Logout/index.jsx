@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import styles from "./styles.module.css";
-import { BsPower } from "react-icons/bs"; // Asegúrate de importar el ícono
+import { BsPower } from "react-icons/bs"; 
+import { useRouter } from 'next/navigation';
 
 function Logout({ logout_isOpen, setLogout_isOpen }) {
+  const router = useRouter();
   const containerRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -28,7 +30,7 @@ function Logout({ logout_isOpen, setLogout_isOpen }) {
   }
 
   return (
-    <div ref={containerRef} className={styles.logout}>
+    <div ref={containerRef} className={styles.logout} onClick={() => router.push("/login")}>
       <BsPower />
       <p>Logout</p>
     </div>

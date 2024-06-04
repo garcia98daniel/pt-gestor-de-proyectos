@@ -12,7 +12,7 @@ import Paper from "@mui/material/Paper";
 import { BsPencilSquare } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import CreateNewProjectForm from "../../components/modals/CreateNewProjectForm";
-import { projectsGetRequesting } from "@/redux/projects/slice";
+import { deleteProjectRequesting, projectsGetRequesting } from "@/redux/projects/slice";
 import { useDispatch, useSelector } from "react-redux";
 
 function Projects() {
@@ -24,6 +24,10 @@ function Projects() {
   useEffect(() => {
     dispatch(projectsGetRequesting());
   }, []);
+
+  const handleDeleteProject = (projectId) => {
+    dispatch(deleteProjectRequesting(projectId));
+  };
 
   return (
     <Layout>
@@ -86,7 +90,9 @@ function Projects() {
                   <TableCell>{project.status}</TableCell>
                   <TableCell style={{ display: 'flex', alignItems: "center", height: "50px" }}>
                     {user === "admin" &&
-                    <><BsPencilSquare /><BsFillTrashFill /></>
+                    <><BsPencilSquare />
+                     <BsFillTrashFill onClick={() => handleDeleteProject(project.id)}/>
+                    </>
                     }
                   </TableCell>
                 </TableRow>

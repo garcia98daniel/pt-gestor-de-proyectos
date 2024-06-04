@@ -7,6 +7,9 @@ import {
   createProjectRequesting,
   createProjectSuccess,
   createProjectError,
+  deleteProjectRequesting,
+  deleteProjectSuccess,
+  deleteProjectError,
   projectsResetStates,
 } from './slice';
 
@@ -56,10 +59,29 @@ function* createProjectFlow(action) {
   }
 }
 
+const deleteProjectApi = async (projectId) => {
+  return fetch(`${projectsUrl}/${projectId}`, {
+    method: 'DELETE',
+  })
+    .then(response => response.json())
+    .catch(error => { throw error });
+};
+
+function* deleteProjectFlow(action) {
+  try {
+    yield call(deleteProjectApi, action.payload);
+    yield put(deleteProjectSuccess(action.payload));
+    yield put(projectsResetStates());
+  } catch (error) {
+    yield put(deleteProjectError(error));
+  }
+}
+
 function* projectsWatcher() {
   yield all([
     takeEvery(projectsGetRequesting.type, fetchProjectsFlow),
     takeEvery(createProjectRequesting.type, createProjectFlow),
+    takeEvery(deleteProjectRequesting.type, deleteProjectFlow),
     ])
 }
 

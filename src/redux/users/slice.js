@@ -42,6 +42,20 @@ export const usersSlice = createSlice({
       state.requesting = false;
       state.error = action.payload;
     },
+    deleteUserRequesting: (state) => {
+      state.requesting = true;
+      state.success = false;
+      state.error = '';
+    },
+    deleteUserSuccess: (state, action) => {
+      state.requesting = false;
+      state.success = true;
+      state.users = state.users.filter(user => user.id !== action.payload);
+    },
+    deleteUserError: (state, action) => {
+      state.requesting = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -53,6 +67,9 @@ export const {
   createUserRequesting,
   createUserSuccess,
   createUserError,
+  deleteUserRequesting,
+  deleteUserSuccess,
+  deleteUserError,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

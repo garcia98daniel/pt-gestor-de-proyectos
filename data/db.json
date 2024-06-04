@@ -206,42 +206,6 @@
   },
   "projects": [
     {
-      "id": "1",
-      "project_name": "Tortor Dictum Institute",
-      "repo_url": "https://",
-      "client": "Phasellus Limited",
-      "developers": "Victor Hugo Conto Carvajal|Jurgen David Lozano Valencia|Sandra Lorena Buitrón Ruiz|Sandra Lorena Buitrón Ruiz|Breyner Albarracín Lozada",
-      "ci": false,
-      "cd": false,
-      "frontend_tecnology": "React|React-Native",
-      "backend_tecnology": ".Net, NodeJS",
-      "databases": "SQLServer|PosgresSQL",
-      "errors_count": 30,
-      "warning_count": 2,
-      "deploy_count": 6,
-      "percentage_completion": 70,
-      "report_nc": 455,
-      "status": "En Desarrollo"
-    },
-    {
-      "id": "2",
-      "project_name": "Velit Justo LLC",
-      "repo_url": "https://",
-      "client": "Venenatis Limited",
-      "developers": "Sandra Lorena Buitrón Ruiz|Franci Eliana Viveros Martínez|Alvaro Eduardo Zapata|Joan Alexis Cordoba Narvaez|Victor Hugo Conto Carvajal|Leonardo Zapata Mora|Breyner Albarracín Lozada",
-      "ci": false,
-      "cd": false,
-      "frontend_tecnology": "VueJS|React-Native|Angular|React",
-      "backend_tecnology": "Python, .Net, NodeJS",
-      "databases": "ORACLE|PosgresSQL",
-      "errors_count": 57,
-      "warning_count": 4,
-      "deploy_count": 9,
-      "percentage_completion": 92,
-      "report_nc": 104,
-      "status": "En Desarrollo"
-    },
-    {
       "id": "3",
       "project_name": "Enim Consequat Inc.",
       "repo_url": "https://",
@@ -2052,60 +2016,6 @@
       "rol": 1,
       "list": "VueJS|Angular|.Net|React-Native|React|Java|Python|SQLServer|NodeJS",
       "area": "Soporte"
-    },
-    {
-      "id": "3",
-      "name": "Ali",
-      "last_name": "Barlow",
-      "url_photo": "",
-      "rol": 1,
-      "list": "React|React-Native|VueJS|Python|NodeJS|.Net|Angular|SQLServer",
-      "area": "Staff"
-    },
-    {
-      "id": "4",
-      "name": "Whilemina",
-      "last_name": "George",
-      "url_photo": "",
-      "rol": 1,
-      "list": "SQLServer|Python|NodeJS|React-Native|VueJS|.Net|Angular|Java|React",
-      "area": "Staff"
-    },
-    {
-      "id": "5",
-      "name": "Lani",
-      "last_name": "Dickerson",
-      "url_photo": "",
-      "rol": 2,
-      "list": "VueJS|NodeJS|React|Angular|.Net|React-Native|SQLServer",
-      "area": "Staff"
-    },
-    {
-      "id": "6",
-      "name": "Renee",
-      "last_name": "Cain",
-      "url_photo": "",
-      "rol": 2,
-      "list": "VueJS|Angular|.Net|Python|Java|React-Native|SQLServer",
-      "area": "Staff"
-    },
-    {
-      "id": "7",
-      "name": "Camden",
-      "last_name": "Mack",
-      "url_photo": "",
-      "rol": 2,
-      "list": "Java|React|React-Native|Python|SQLServer",
-      "area": "Soporte"
-    },
-    {
-      "id": "8",
-      "name": "Hilel",
-      "last_name": "Daugherty",
-      "url_photo": "",
-      "rol": 2,
-      "list": "Python|VueJS|NodeJS|SQLServer|Java|React-Native|React",
-      "area": "Fabrica"
     },
     {
       "id": "9",

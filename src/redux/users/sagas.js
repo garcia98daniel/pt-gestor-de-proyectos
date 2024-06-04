@@ -7,7 +7,10 @@ import {
   usersResetStates,
   createUserRequesting,
   createUserSuccess,
-  createUserError
+  createUserError,
+  deleteUserRequesting,
+  deleteUserSuccess,
+  deleteUserError,
 } from "./slice";
 
 const usersUrl = `${ROUTE_ENDPOINT}/users`;
@@ -73,10 +76,38 @@ function* createUserFlow(action) {
   }
 }
 
+const deleteUserApi = async (userId) => {
+  return fetch(`${usersUrl}/${userId}`, {
+    method: 'DELETE',
+  })
+    .then(response => {
+      if (response.status === 500) throw "Error interno del servidor";
+      return response.json();
+    })
+    .then(json => {
+      if (json) return json;
+      throw json;
+    })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+function* deleteUserFlow(action) {
+  try {
+    yield call(deleteUserApi, action.payload);
+    yield put(deleteUserSuccess(action.payload));
+    yield put(usersResetStates());
+  } catch (error) {
+    yield put(deleteUserError(error));
+  }
+}
+
 function* usersWatcher() {
   yield all([
     takeEvery(usersGetRequesting.type, usersFlow),
     takeEvery(createUserRequesting.type, createUserFlow),
+    takeEvery(deleteUserRequesting.type, deleteUserFlow),
   ]);
 }
 

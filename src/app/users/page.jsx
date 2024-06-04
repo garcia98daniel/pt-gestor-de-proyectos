@@ -14,16 +14,21 @@ import { BsFillTrashFill } from "react-icons/bs";
 import CreateNewUserForm from "../../components/modals/CreateNewUserForm";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { usersGetRequesting } from "@/redux/users/slice";
+import { deleteUserRequesting, usersGetRequesting } from "@/redux/users/slice";
 
 function Users() {
   const [createNewUser_isOpen, setCreateNewUser_isOpen] = useState(false);
   const dispatch = useDispatch();
   const { users, requesting } = useSelector(state => state.users);
+  const userReducer = useSelector(state => state.user);
 
   useEffect(() => {
     dispatch(usersGetRequesting());
   }, []);
+
+  const handleDeleteUser = (userId) => {
+    dispatch(deleteUserRequesting(userId)); // Despacha la acción para eliminar el usuario
+  };
 
   return (
     <Layout>
@@ -75,9 +80,10 @@ function Users() {
                   <TableCell>{user.area}</TableCell>
                   <TableCell>Proyectos</TableCell> {/* Placeholder para proyectos */}
                   <TableCell style={{ display: 'flex', alignItems: "center", height: "50px" }}>
-                  {user === "admin" &&
+                  {userReducer?.user?.user === "admin" &&
                     <>
-                      <BsPencilSquare /><BsFillTrashFill />
+                      <BsPencilSquare />
+                      <BsFillTrashFill onClick={() => handleDeleteUser(user.id)} /> 
                     </>
                   }
                   </TableCell>

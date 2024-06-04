@@ -42,6 +42,20 @@ export const projectsSlice = createSlice({
       state.success = false;
       state.error = '';
     },
+    deleteProjectRequesting: (state) => {
+      state.requesting = true;
+      state.success = false;
+      state.error = '';
+    },
+    deleteProjectSuccess: (state, action) => {
+      state.requesting = false;
+      state.success = true;
+      state.projects = state.projects.filter(project => project.id !== action.payload);
+    },
+    deleteProjectError: (state, action) => {
+      state.requesting = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -53,6 +67,9 @@ export const {
   createProjectSuccess,
   createProjectError,
   projectsResetStates,
+  deleteProjectRequesting,
+  deleteProjectSuccess,
+  deleteProjectError,
 } = projectsSlice.actions;
 
 export default projectsSlice.reducer;
