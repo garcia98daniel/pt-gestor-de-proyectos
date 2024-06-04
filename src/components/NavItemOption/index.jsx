@@ -10,15 +10,19 @@ function NavItemOption({ icon, optionName, redirect }) {
 
   const pathname = usePathname();
   const isActive = pathname?.includes(redirect);
-
+  const {menu_isopen} = useSelector(state => state.generals);
   return (
     <Link href={redirect} className={styles.NavItemOption_container}>
       <div className={`${styles.NavItemOption} ${isActive ? styles.active : ''}`}>
         <div style={{ display: "flex" }}>
           {icon}
+          {menu_isopen && 
           <p>{optionName}</p>
+          }
         </div>
+        {menu_isopen &&
         <BsChevronRight />
+        }
       </div>
     </Link>
   );

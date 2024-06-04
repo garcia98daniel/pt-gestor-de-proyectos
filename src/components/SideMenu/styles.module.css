@@ -1,4 +1,4 @@
-.SideMenu{
+.SideMenu.active{
     min-width: 220px;
     min-height: calc(100vh - 54px);
     padding: 30px 10px;
@@ -7,4 +7,17 @@
     flex-direction: column;
     gap: 10px;
     background: white;
+    transition: all 0.3s ease;
+}
+
+.SideMenu{
+    min-width: 55px;
+    min-height: calc(100vh - 54px);
+    padding: 30px 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    transition: all 0.3s ease;
 }

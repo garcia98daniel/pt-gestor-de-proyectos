@@ -11,13 +11,16 @@ import Notifications from '../Notifications';
 import Logout from '../Logout';
 import { todosGetRequesting } from '@/redux/todos/slice';
 import { notificationsGetRequesting } from '@/redux/notifications/slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeMenuIsOpen } from '@/redux/generalsEffects/slice';
 
 function Nav() {
     const dispatch = useDispatch();
     const [taskList_isOpen, setTaskList_isOpen] = useState(false);
     const [notifications_isOpen, setNotifications_isOpen] = useState(false);
     const [logout_isOpen, setLogout_isOpen] = useState(false);
+    const {menu_isopen} = useSelector(state => state.generals);
+
     useEffect(()=>{
         dispatch(notificationsGetRequesting());
         dispatch(todosGetRequesting());
@@ -46,7 +49,11 @@ function Nav() {
                         />
                     </i>
 
-                    <BsList size={"20px"}/>
+                    <BsList 
+                    size={"20px"} 
+                    style={{cursor:"pointer"}} 
+                    onClick={() => dispatch(changeMenuIsOpen(!menu_isopen))}
+                    />
                 </div>
 
                 <div className={styles.Layout_nav_right_side}>

@@ -75,7 +75,11 @@ function Users() {
                   <TableCell>{user.area}</TableCell>
                   <TableCell>Proyectos</TableCell> {/* Placeholder para proyectos */}
                   <TableCell style={{ display: 'flex', alignItems: "center", height: "50px" }}>
-                    <BsPencilSquare /><BsFillTrashFill />
+                  {user === "admin" &&
+                    <>
+                      <BsPencilSquare /><BsFillTrashFill />
+                    </>
+                  }
                   </TableCell>
                 </TableRow>
               ))}

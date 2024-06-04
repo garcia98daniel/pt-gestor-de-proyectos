@@ -19,6 +19,7 @@ function Projects() {
   const dispatch = useDispatch();
   const [createNewProject_isOpen, setCreateNewProject_isOpen] = useState(false);
   const { projects, requesting } = useSelector(state => state.projects);
+  const {user:{user}} = useSelector(state => state.user);
   
   useEffect(() => {
     dispatch(projectsGetRequesting());
@@ -84,7 +85,9 @@ function Projects() {
                   <TableCell>{project.report_nc}</TableCell>
                   <TableCell>{project.status}</TableCell>
                   <TableCell style={{ display: 'flex', alignItems: "center", height: "50px" }}>
-                    <BsPencilSquare /><BsFillTrashFill />
+                    {user === "admin" &&
+                    <><BsPencilSquare /><BsFillTrashFill /></>
+                    }
                   </TableCell>
                 </TableRow>
               ))}
