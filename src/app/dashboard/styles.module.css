@@ -5,6 +5,11 @@
     margin-top:20px;
 }
 
+.weather_img_container{
+    display: block;
+    height: 200px;
+}
+
 .welcome_txt{
     margin: 0;
     margin-top: 40px;
@@ -69,4 +74,22 @@
     background: white;
     box-sizing: border-box;
     border-radius: 8px;
+}
+
+@media (max-width: 860px) {
+    .weather_and_stats{
+        flex-direction: column;
+    }
+    .server_and_commits{
+        flex-direction: column;
+    }
+
+    .server_chart_container{
+        width: 100%;
+    }
+
+    .delivery_stats_chart_container{
+        width: 100%;
+        justify-content: space-between;
+    }
 }

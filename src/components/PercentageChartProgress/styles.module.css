@@ -10,3 +10,9 @@
     align-items:center;
     gap: 30px;
 }
+
+@media (max-width: 860px) {
+    .PercentageChartProgress_container{
+        width: 100%;
+    }
+}

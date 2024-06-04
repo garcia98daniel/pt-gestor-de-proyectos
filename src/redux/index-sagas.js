@@ -6,6 +6,7 @@ import todosSagas from './todos/sagas';
 import dashboardCardsSagas from './dashboardCards/sagas';
 import projectsSagas from './projects/sagas';
 import usersSagas from './users/sagas';
+import commitsSagas from './commits/sagas';
 
 
 function* IndexSagas() {
@@ -16,6 +17,7 @@ function* IndexSagas() {
         fork(dashboardCardsSagas),
         fork(projectsSagas),
         fork(usersSagas),
+        fork(commitsSagas),
     ]);
 }
 export default IndexSagas

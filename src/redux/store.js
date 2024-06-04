@@ -9,6 +9,7 @@ import { todosSlice } from "./todos/slice";
 import { dashboardCardsSlice } from "./dashboardCards/slice";
 import { projectsSlice } from "./projects/slice";
 import { usersSlice } from "./users/slice";
+import { commitsSlice } from "./commits/slice";
 import IndexSagas from "./index-sagas";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -23,7 +24,7 @@ const store = configureStore({
         todos:todosSlice.reducer,
         dashboardCards:dashboardCardsSlice.reducer,
         projects:projectsSlice.reducer,
-        users:usersSlice.reducer,
+        commits:commitsSlice.reducer,
     }),
 
 

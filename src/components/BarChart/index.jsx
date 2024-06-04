@@ -1,18 +1,36 @@
-import React from 'react';
+import { commitsGetRequesting } from '@/redux/commits/slice';
+import React, { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { useDispatch, useSelector } from 'react-redux';
 
-function BarChart(props) {
+function BarChart() {
+    const dispatch = useDispatch();
+    const { commits } = useSelector(state => state.commits);
+
+    useEffect(() => {
+        dispatch(commitsGetRequesting());
+    }, []);
+
+    // Extraer los valores de los commits y sus meses correspondientes
+    const featData = commits.map(commit => commit.feat);
+    const fixData = commits.map(commit => commit.fix);
+    const labels = commits.map(commit => {
+        // Mapear el número del mes al nombre del mes
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return months[commit.month - 1];
+    });
+
     const data = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+        labels: labels,
         datasets: [
             {
                 label: "Feat",
-                data: [480, 340, 540, 150],
+                data: featData,
                 backgroundColor: "#4746A3"
             },
             {
                 label: "Fix",
-                data: [380, 480, 320],
+                data: fixData,
                 backgroundColor: "#97BDFE"
             }
         ]
@@ -53,7 +71,7 @@ function BarChart(props) {
     };
 
     return (
-        <div style={{ width: '100%', height: '256px', marginTop:"110px" }}>
+        <div style={{ width: '100%', height: '256px', marginTop: "110px" }}>
             <Bar data={data} options={options} />
         </div>
     );
